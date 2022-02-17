@@ -1,3 +1,16 @@
-p {
-	font-family: 'Courier New', Courier, monospace;
+* {
+  padding: 0;
+  margin: 0;
+}
+
+canvas {
+  background: #3662db;
+  cursor: none;
+}
+
+body {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #455b96;
+  color: azure;
 }
