@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('canvas-ocean')
   const ctx = canvas.getContext('2d')
 
-  canvas.width = window.innerWidth
-  canvas.height = window.innerHeight
+  canvas.width = window.innerWidth - 5
+  canvas.height = window.innerHeight - 5
 
   let movingObjYPos = 0
   let movingObjXPos = 100

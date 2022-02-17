@@ -13,4 +13,5 @@ body {
   width: 100vw;
   background-color: #455b96;
   color: azure;
+  overscroll-behavior: none;
 }
