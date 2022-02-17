@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.font = '20px Courier New'
+    ctx.fillText(caught, canvas.width - 30, 30)
     drawPointer()
     drawMovingObjects()
     updateMovingObjects()
