@@ -5,8 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
   canvas.width = window.innerWidth - 5
   canvas.height = window.innerHeight - 5
 
-  let movingObjYPos = 0
-  let movingObjXPos = 100
+  let movingObjs = [
+    { xPos: 100, yPos: 0 },
+    { xPos: 11, yPos: 12 },
+    { xPos: 110, yPos: 120 },
+  ]
 
   let mouseX = 0
   let mouseY = 0
@@ -22,31 +25,30 @@ document.addEventListener('DOMContentLoaded', () => {
     updateMovingObjects()
   }
 
-  let resetMovingObj = () => {
-    movingObjYPos = 0
-    movingObjXPos = Math.floor(Math.random() * (canvas.width - 10))
-    if (movingObjXPos >= canvas.width) {
-      Math.floor(Math.random() * (canvas.width - 10))
-    }
+  let resetMovingObj = (obj) => {
+    obj.yPos = 0
+    obj.xPos = Math.floor(Math.random() * (canvas.width - 10))
   }
 
   let updateMovingObjects = () => {
-    const leeway = 10
+    movingObjs.forEach((obj) => {
+      const leeway = 10
 
-    let distanceX = Math.abs(movingObjXPos - mouseX)
-    let distanceY = Math.abs(movingObjYPos - mouseY)
+      let distanceX = Math.abs(obj.xPos - mouseX)
+      let distanceY = Math.abs(obj.yPos - mouseY)
 
-    if (
-      Math.max(distanceX, leeway) == leeway &&
-      Math.max(distanceY, leeway) == leeway
-    ) {
-      resetMovingObj()
-      caught += 1
-    }
-    movingObjYPos += getSpeed()
-    if (movingObjYPos >= canvas.height) {
-      resetMovingObj()
-    }
+      if (
+        Math.max(distanceX, leeway) == leeway &&
+        Math.max(distanceY, leeway) == leeway
+      ) {
+        resetMovingObj(obj)
+        caught += 1
+      }
+      obj.yPos += getSpeed()
+      if (obj.yPos >= canvas.height) {
+        resetMovingObj(obj)
+      }
+    })
   }
 
   let getSpeed = () => {
@@ -55,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (caught < 10) {
       return 2
     }
-    return 4
+    return 3
   }
 
   let updatePointerPosition = (event) => {
@@ -67,11 +69,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   let drawMovingObjects = () => {
-    ctx.beginPath()
-    ctx.rect(movingObjXPos, movingObjYPos, 10, 10)
-    ctx.fillStyle = '#FFFFFF'
-    ctx.fill()
-    ctx.closePath()
+    movingObjs.forEach((obj) => {
+      ctx.beginPath()
+      ctx.rect(obj.xPos, obj.yPos, 10, 10)
+      ctx.fillStyle = '#FFFFFF'
+      ctx.fill()
+      ctx.closePath()
+    })
   }
 
   let drawPointer = () => {
