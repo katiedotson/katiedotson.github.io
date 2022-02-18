@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+html {
+  min-height: -webkit-fill-available;
+}
+
 canvas {
   background: #3662db;
   cursor: none;
@@ -10,7 +14,7 @@ canvas {
 }
 
 body {
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
   background-color: #455b96;
   color: azure;
