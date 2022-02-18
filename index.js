@@ -61,6 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let bg = new Image()
     bg.src = './bg.png'
 
+    let pointer = new Image()
+    pointer.src = './crosshairs.png'
+
     let draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -134,11 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let drawPointer = () => {
-      ctx.beginPath()
-      ctx.rect(mouseX, mouseY, 10, 10)
-      ctx.fillStyle = '#fcba03'
-      ctx.fill()
-      ctx.closePath()
+      ctx.drawImage(pointer, mouseX - 50, mouseY - 50, 100, 100)
     }
 
     setInterval(draw, 10)
