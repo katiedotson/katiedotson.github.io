@@ -58,15 +58,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let coralReef = new Image()
     coralReef.src = './coral_reef.png'
 
+    let bg = new Image()
+    bg.src = './bg.png'
+
     let draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      const background = ctx.createPattern(bg, 'repeat')
+      ctx.fillStyle = background
       ctx.font = '10px press-start'
-      ctx.fillText('8-bit Ocean Cleaning Service', 30, 30)
-      ctx.fillText(caught, canvas.width - 30, 30)
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
       drawPointer()
       drawCoralReef()
       drawMovingObjects()
       updateMovingObjects()
+
+      ctx.fillText('8-bit Ocean Cleaning Service', 30, 30)
+      ctx.fillText(caught, canvas.width - 30, 30)
     }
 
     let drawCoralReef = () => {
