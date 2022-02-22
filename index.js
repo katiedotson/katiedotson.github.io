@@ -20,24 +20,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let movingObjs = [
       {
-        xPos: 100,
-        yPos: 0,
-        image: './trash_1.png',
-        width: 70,
-        height: 120,
-        leeway: 70,
+        xPos: randomXPos(),
+        yPos: randomYPos(),
+        image: './images/trash_1.png',
+        width: 30,
+        height: 80,
+        leeway: 30,
         speed: 2,
         type: 'trash',
       },
       {
         xPos: 11,
         yPos: 12,
-        image: './fish_1.png',
+        image: './images/wrapper.png',
         width: 20,
         height: 30,
         leeway: 30,
-        speed: 1,
-        type: 'fish',
+        speed: 1.5,
+        type: 'trash',
+      },
+      {
+        xPos: 11,
+        yPos: 12,
+        image: './images/bag.png',
+        width: 60,
+        height: 60,
+        leeway: 60,
+        speed: 1.1,
+        type: 'trash',
+      },
+      {
+        xPos: 11,
+        yPos: 12,
+        image: './images/bottle.png',
+        width: 60,
+        height: 60,
+        leeway: 60,
+        speed: 1.3,
+        type: 'trash',
+      },
+      {
+        xPos: 11,
+        yPos: 12,
+        image: './images/paper.png',
+        width: 60,
+        height: 60,
+        leeway: 60,
+        speed: 0.8,
+        type: 'trash',
+      },
+      {
+        xPos: 11,
+        yPos: 12,
+        image: './images/television.png',
+        width: 100,
+        height: 100,
+        leeway: 100,
+        speed: 1.6,
+        type: 'trash',
       },
       { xPos: randomXPos(), yPos: randomYPos(), speed: 1.2 },
       { xPos: randomXPos(), yPos: randomYPos(), speed: 0.8 },
@@ -56,13 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let caught = 0
 
     let coralReef = new Image()
-    coralReef.src = './coral_reef.png'
+    coralReef.src = './images/coral_reef.png'
 
     let bg = new Image()
-    bg.src = './bg.png'
+    bg.src = './images/bg.png'
 
     let pointer = new Image()
-    pointer.src = './crosshairs.png'
+    pointer.src = './images/crosshairs.png'
 
     let draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
