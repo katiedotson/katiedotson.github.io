@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let mouseY = 0
 
     let caught = 0
+    let missed = 0
 
     let coralReef = new Image()
     coralReef.src = './images/coral_reef.png'
@@ -118,7 +119,9 @@ document.addEventListener('DOMContentLoaded', () => {
       updateMovingObjects()
 
       ctx.fillText('8-bit Ocean Cleaning Service', 30, 30)
-      ctx.fillText(caught, canvas.width - 30, 30)
+      ctx.fillText("Press 'Space' to pause", 30, 50)
+      ctx.fillText('Caught: ' + caught, 30, 70)
+      ctx.fillText('Missed: ' + missed, 30, 90)
     }
 
     let drawCoralReef = () => {
@@ -143,11 +146,16 @@ document.addEventListener('DOMContentLoaded', () => {
           Math.max(distanceY, leeway) == leeway
         ) {
           resetMovingObj(obj)
-          caught += 1
+          if (obj.type == 'trash') {
+            caught += 1
+          }
         }
         obj.yPos += obj.speed
         if (obj.yPos >= canvas.height) {
           resetMovingObj(obj)
+          if (obj.type == 'trash') {
+            missed += 1
+          }
         }
       })
     }
@@ -180,7 +188,20 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.drawImage(pointer, mouseX - 50, mouseY - 50, 100, 100)
     }
 
-    setInterval(draw, 10)
+    let interval = setInterval(draw, 10)
+    let isPaused = false
+
+    document.addEventListener('keydown', (event) => {
+      console.log('KEYUP')
+      if (event.code == 'Space' && !isPaused) {
+        clearInterval(interval)
+        isPaused = true
+      } else if (event.code == 'Space' && isPaused) {
+        interval = setInterval(draw, 10)
+        isPaused = false
+      }
+    })
+
     drawCoralReef()
     canvas.addEventListener('mousemove', updatePointerPosition, false)
     canvas.addEventListener('touchmove', updatePointerPosition, false)
