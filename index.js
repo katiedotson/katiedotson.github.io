@@ -192,7 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let isPaused = false
 
     document.addEventListener('keydown', (event) => {
-      console.log('KEYUP')
       if (event.code == 'Space' && !isPaused) {
         clearInterval(interval)
         isPaused = true
